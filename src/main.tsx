@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')!).render(
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('./sw.js');
+      const reg = await navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`);
       // Check for updates every 5 minutes
       setInterval(() => reg.update(), 5 * 60 * 1000);
 

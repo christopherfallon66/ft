@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { seedDatabase } from './db/database';
 import { useTimer } from './hooks/useTimer';
 import { addTimeEntry } from './hooks/useTimeEntries';
@@ -87,13 +87,13 @@ function App() {
   if (!ready) {
     return (
       <div className="h-full flex items-center justify-center">
-        <img src="/icons/icon.svg" alt="" className="w-16 h-16 animate-pulse" />
+        <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" className="w-16 h-16 animate-pulse" />
       </div>
     );
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <CrashRecovery />
       <Routes>
         <Route element={<Layout />}>
@@ -105,7 +105,7 @@ function App() {
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
