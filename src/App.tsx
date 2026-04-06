@@ -51,7 +51,7 @@ function CrashRecovery() {
               const result = await stop();
               if (result && result.durationMinutes > 0) {
                 await addTimeEntry({
-                  date: new Date().toISOString().slice(0, 10),
+                  date: new Date().toLocaleDateString('en-CA'),
                   durationMinutes: result.durationMinutes,
                   category: result.category,
                   locationType: result.locationType,
