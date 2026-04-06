@@ -1,26 +1,42 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db, DEFAULT_USER_ID } from '../db/database';
 
 export default function Settings() {
+  const navigate = useNavigate();
   const user = useLiveQuery(() => db.users.get(DEFAULT_USER_ID));
   const mileageConfig = useLiveQuery(() => db.appConfig.get('irs_mileage_rate'));
   const allotmentConfig = useLiveQuery(() => db.appConfig.get('monthly_allotment_hours'));
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+  const [organization, setOrganization] = useState('');
   const [allotment, setAllotment] = useState('90');
   const [mileageRate, setMileageRate] = useState('0.70');
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+      setRole(user.role);
+      setOrganization(user.organization);
+    }
     if (allotmentConfig) setAllotment(allotmentConfig.value);
     if (mileageConfig) setMileageRate(mileageConfig.value);
-  }, [allotmentConfig, mileageConfig]);
+  }, [user?.id, allotmentConfig, mileageConfig]);
 
   const handleSave = async () => {
     await db.appConfig.put({ key: 'monthly_allotment_hours', value: allotment });
     await db.appConfig.put({ key: 'irs_mileage_rate', value: mileageRate });
     if (user) {
       await db.users.update(DEFAULT_USER_ID, {
+        name,
+        email,
+        role,
+        organization,
         monthlyHourAllotment: parseFloat(allotment),
         updatedAt: new Date().toISOString(),
       });
@@ -42,39 +58,55 @@ export default function Settings() {
     URL.revokeObjectURL(url);
   };
 
+  const inputClass = "w-full bg-forest-deep text-text-light rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gold/50";
+
   return (
     <div className="space-y-6 pb-4">
       <h2 className="text-lg font-semibold text-text-light">Settings</h2>
 
       {/* Profile */}
-      <div className="bg-forest-deep rounded-xl p-4 space-y-2">
+      <div className="space-y-3">
         <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold">Profile</h3>
-        <p className="text-sm text-text-light">{user?.name}</p>
-        <p className="text-xs text-text-muted">{user?.role}, {user?.organization}</p>
-        <p className="text-xs text-text-muted">{user?.email}</p>
+        <div>
+          <label className="text-xs text-text-muted block mb-1">Name</label>
+          <input type="text" value={name} onChange={e => setName(e.target.value)} className={inputClass} />
+        </div>
+        <div>
+          <label className="text-xs text-text-muted block mb-1">Email</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={inputClass} />
+        </div>
+        <div>
+          <label className="text-xs text-text-muted block mb-1">Role</label>
+          <input type="text" value={role} onChange={e => setRole(e.target.value)} className={inputClass} />
+        </div>
+        <div>
+          <label className="text-xs text-text-muted block mb-1">Organization</label>
+          <input type="text" value={organization} onChange={e => setOrganization(e.target.value)} className={inputClass} />
+        </div>
       </div>
 
-      {/* Allotment */}
-      <div>
-        <label className="text-xs text-text-muted block mb-1">Monthly Hour Allotment</label>
-        <input
-          type="number"
-          value={allotment}
-          onChange={e => setAllotment(e.target.value)}
-          className="w-full bg-forest-deep text-text-light rounded-xl px-4 py-3 font-mono-num focus:outline-none focus:ring-1 focus:ring-gold/50"
-        />
-      </div>
-
-      {/* Mileage rate */}
-      <div>
-        <label className="text-xs text-text-muted block mb-1">IRS Mileage Rate ($/mile)</label>
-        <input
-          type="number"
-          step="0.01"
-          value={mileageRate}
-          onChange={e => setMileageRate(e.target.value)}
-          className="w-full bg-forest-deep text-text-light rounded-xl px-4 py-3 font-mono-num focus:outline-none focus:ring-1 focus:ring-gold/50"
-        />
+      {/* Allotment & Mileage */}
+      <div className="space-y-3 pt-4 border-t border-forest-deep">
+        <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold">Budget</h3>
+        <div>
+          <label className="text-xs text-text-muted block mb-1">Monthly Hour Allotment</label>
+          <input
+            type="number"
+            value={allotment}
+            onChange={e => setAllotment(e.target.value)}
+            className={`${inputClass} font-mono-num`}
+          />
+        </div>
+        <div>
+          <label className="text-xs text-text-muted block mb-1">IRS Mileage Rate ($/mile)</label>
+          <input
+            type="number"
+            step="0.01"
+            value={mileageRate}
+            onChange={e => setMileageRate(e.target.value)}
+            className={`${inputClass} font-mono-num`}
+          />
+        </div>
       </div>
 
       <button
@@ -84,14 +116,20 @@ export default function Settings() {
         {saved ? 'Saved!' : 'Save Settings'}
       </button>
 
-      {/* Data management */}
+      {/* Data & Help */}
       <div className="space-y-3 pt-4 border-t border-forest-deep">
-        <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold">Data</h3>
+        <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold">Data & Help</h3>
         <button
           onClick={handleExport}
           className="w-full border border-text-muted/30 text-text-light font-medium py-3 rounded-xl text-sm active:scale-[0.97] transition-transform min-h-[44px]"
         >
           Export All Data (JSON)
+        </button>
+        <button
+          onClick={() => navigate('/help')}
+          className="w-full border border-text-muted/30 text-text-light font-medium py-3 rounded-xl text-sm active:scale-[0.97] transition-transform min-h-[44px]"
+        >
+          How To / FAQ
         </button>
       </div>
 

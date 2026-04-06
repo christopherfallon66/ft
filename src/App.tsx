@@ -12,6 +12,7 @@ import History from './pages/History';
 import EditTimeEntry from './pages/EditTimeEntry';
 import EditExpense from './pages/EditExpense';
 import Settings from './pages/Settings';
+import Help from './pages/Help';
 
 function CrashRecovery() {
   const { activeTimer, elapsed, stop, discard } = useTimer();
@@ -107,6 +108,7 @@ function App() {
           <Route path="/edit-time/:id" element={<EditTimeEntry />} />
           <Route path="/edit-expense/:id" element={<EditExpense />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/help" element={<Help />} />
         </Route>
       </Routes>
     </HashRouter>
