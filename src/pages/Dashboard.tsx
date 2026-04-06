@@ -126,7 +126,8 @@ export default function Dashboard() {
             {recentItems.map(item => (
               <div
                 key={item.id}
-                className="bg-forest-deep rounded-xl px-3 py-2.5 flex items-center gap-3"
+                onClick={() => navigate(item.type === 'time' ? `/edit-time/${item.id}` : `/edit-expense/${item.id}`)}
+                className="bg-forest-deep rounded-xl px-3 py-2.5 flex items-center gap-3 cursor-pointer active:opacity-80"
               >
                 <span className="text-lg">{item.icon}</span>
                 <div className="flex-1 min-w-0">
