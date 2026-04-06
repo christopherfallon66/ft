@@ -21,7 +21,8 @@
       "Bash(gh --version)",
       "Bash(gh repo:*)",
       "Bash(npx vite:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(gh run:*)"
     ]
   }
 }
