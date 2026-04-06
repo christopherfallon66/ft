@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
+import { QRCodeSVG } from 'qrcode.react';
 import { db, DEFAULT_USER_ID } from '../db/database';
+
+const APP_URL = 'https://christopherfallon66.github.io/ft/';
 
 export default function Settings() {
   const navigate = useNavigate();
@@ -16,6 +19,7 @@ export default function Settings() {
   const [allotment, setAllotment] = useState('90');
   const [mileageRate, setMileageRate] = useState('0.70');
   const [saved, setSaved] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -131,6 +135,31 @@ export default function Settings() {
         >
           How To / FAQ
         </button>
+      </div>
+
+      {/* Share */}
+      <div className="space-y-3 pt-4 border-t border-forest-deep">
+        <h3 className="text-xs uppercase tracking-wider text-text-muted font-semibold">Share App</h3>
+        <div className="bg-forest-deep rounded-xl p-4 flex flex-col items-center gap-3">
+          <QRCodeSVG
+            value={APP_URL}
+            size={160}
+            bgColor="#0A2E22"
+            fgColor="#E1F5EE"
+            level="M"
+          />
+          <p className="text-xs text-text-muted text-center">Scan to install Fallon Tracker</p>
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(APP_URL);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+            className="text-sm text-teal font-medium min-h-[44px] px-4"
+          >
+            {copied ? 'Copied!' : 'Copy Link'}
+          </button>
+        </div>
       </div>
 
       <p className="text-center text-xs text-text-muted">Fallon Tracker v1.0</p>
