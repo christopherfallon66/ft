@@ -9,6 +9,8 @@ import Timer from './pages/Timer';
 import LogTime from './pages/LogTime';
 import AddExpense from './pages/AddExpense';
 import History from './pages/History';
+import EditTimeEntry from './pages/EditTimeEntry';
+import EditExpense from './pages/EditExpense';
 import Settings from './pages/Settings';
 
 function CrashRecovery() {
@@ -102,6 +104,8 @@ function App() {
           <Route path="/log-time" element={<LogTime />} />
           <Route path="/add-expense" element={<AddExpense />} />
           <Route path="/history" element={<History />} />
+          <Route path="/edit-time/:id" element={<EditTimeEntry />} />
+          <Route path="/edit-expense/:id" element={<EditExpense />} />
           <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTimeEntries, deleteTimeEntry } from '../hooks/useTimeEntries';
 import { useExpenses, deleteExpense } from '../hooks/useExpenses';
 import { currentMonthString, formatDuration, formatCurrency, formatDateFull } from '../utils/formatting';
@@ -7,6 +8,7 @@ import { getTimeCategoryInfo, getExpenseCategoryInfo } from '../utils/categories
 type FilterTab = 'all' | 'time' | 'expenses';
 
 export default function History() {
+  const navigate = useNavigate();
   const [month, setMonth] = useState(currentMonthString());
   const [filter, setFilter] = useState<FilterTab>('all');
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -91,7 +93,10 @@ export default function History() {
         <div className="space-y-2">
           {items.map(item => (
             <div key={`${item.type}-${item.id}`} className="bg-forest-deep rounded-xl px-3 py-2.5">
-              <div className="flex items-center gap-3">
+              <div
+                className="flex items-center gap-3 cursor-pointer active:opacity-80"
+                onClick={() => navigate(item.type === 'time' ? `/edit-time/${item.id}` : `/edit-expense/${item.id}`)}
+              >
                 <span className="text-lg">{item.icon}</span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-baseline">
@@ -107,7 +112,7 @@ export default function History() {
                 </div>
               </div>
 
-              {/* Delete */}
+              {/* Edit / Delete actions */}
               {deleteConfirm === item.id ? (
                 <div className="flex items-center gap-2 mt-2 pt-2 border-t border-forest/50">
                   <span className="text-xs text-red">Delete?</span>
@@ -125,12 +130,20 @@ export default function History() {
                   </button>
                 </div>
               ) : (
-                <button
-                  onClick={() => setDeleteConfirm(item.id)}
-                  className="text-[10px] text-text-muted mt-1 hover:text-red transition-colors"
-                >
-                  Delete
-                </button>
+                <div className="flex gap-3 mt-1">
+                  <button
+                    onClick={() => navigate(item.type === 'time' ? `/edit-time/${item.id}` : `/edit-expense/${item.id}`)}
+                    className="text-[10px] text-teal hover:text-teal/80 transition-colors"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => setDeleteConfirm(item.id)}
+                    className="text-[10px] text-text-muted hover:text-red transition-colors"
+                  >
+                    Delete
+                  </button>
+                </div>
               )}
             </div>
           ))}
