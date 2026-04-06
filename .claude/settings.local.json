@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(where.exe npm:*)",
+      "Bash(where.exe node:*)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs:/c/Users/DJPLU/AppData/Roaming/npm\")",
+      "Read(//c/Program Files/**)",
+      "Read(//c//**)",
+      "Read(//c/Users/DJPLU/AppData/Roaming/**)",
+      "Read(//c/Users/DJPLU/AppData/Local/**)",
+      "Bash(powershell.exe -Command \"Get-Command npm -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(powershell.exe -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
+      "Bash(npm install:*)",
+      "Bash(node scripts/generate-icons.mjs)",
+      "Bash(gh auth:*)",
+      "Bash(powershell.exe -Command \"winget install GitHub.cli --accept-package-agreements --accept-source-agreements\")",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
+      "Bash(gh --version)"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="102" fill="#0F3D2E"/>
+  <!-- Shield -->
+  <path d="M256 52 L410 120 L410 280 Q410 380 256 452 Q102 380 102 280 L102 120 Z" fill="#0A2E22" stroke="#EF9F27" stroke-width="8"/>
+  <path d="M256 68 L396 130 L396 276 Q396 368 256 436 Q116 368 116 276 L116 130 Z" fill="none" stroke="#EF9F27" stroke-width="2" opacity="0.3"/>
+  <!-- Clock face -->
+  <circle cx="256" cy="210" r="95" fill="#0F3D2E" stroke="#EF9F27" stroke-width="6"/>
+  <!-- Hour markers -->
+  <line x1="256" y1="125" x2="256" y2="140" stroke="#EF9F27" stroke-width="4" stroke-linecap="round"/>
+  <line x1="341" y1="210" x2="326" y2="210" stroke="#EF9F27" stroke-width="4" stroke-linecap="round"/>
+  <line x1="256" y1="295" x2="256" y2="280" stroke="#EF9F27" stroke-width="4" stroke-linecap="round"/>
+  <line x1="171" y1="210" x2="186" y2="210" stroke="#EF9F27" stroke-width="4" stroke-linecap="round"/>
+  <!-- Minor markers -->
+  <line x1="298" y1="134" x2="291" y2="146" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="332" y1="168" x2="320" y2="175" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="332" y1="252" x2="320" y2="245" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="298" y1="286" x2="291" y2="274" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="214" y1="286" x2="221" y2="274" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="180" y1="252" x2="192" y2="245" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="180" y1="168" x2="192" y2="175" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <line x1="214" y1="134" x2="221" y2="146" stroke="#EF9F27" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <!-- Minute hand (pointing to 12) -->
+  <line x1="256" y1="210" x2="256" y2="140" stroke="#E1F5EE" stroke-width="4" stroke-linecap="round"/>
+  <!-- Hour hand (pointing to ~2) -->
+  <line x1="256" y1="210" x2="293" y2="168" stroke="#E1F5EE" stroke-width="5" stroke-linecap="round"/>
+  <!-- Center dot -->
+  <circle cx="256" cy="210" r="7" fill="#EF9F27"/>
+  <!-- Dollar sign -->
+  <text x="256" y="388" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="72" font-weight="500" fill="#5DCAA5">$</text>
+  <!-- FT initials -->
+  <text x="256" y="460" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="600" letter-spacing="4" fill="#5DCAA5" opacity="0.7">FT</text>
+</svg>
