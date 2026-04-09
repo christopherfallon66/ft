@@ -23,7 +23,7 @@ if ('serviceWorker' in navigator) {
         newWorker.addEventListener('statechange', () => {
           if (newWorker.state === 'activated' && navigator.serviceWorker.controller) {
             // New version available - show update prompt
-            if (confirm('A new version of Fallon Tracker is available. Reload now?')) {
+            if (confirm('A new version of Rikers Expert Tracker is available. Reload now?')) {
               window.location.reload();
             }
           }

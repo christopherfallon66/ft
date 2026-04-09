@@ -1,6 +1,6 @@
 {
-  "name": "Fallon's Project Expense & Time Tracker",
-  "short_name": "Fallon Tracker",
+  "name": "Rikers Expert Tracker",
+  "short_name": "Rikers Expert Tracker",
   "description": "Time and expense tracking for the Nunez Remediation project",
   "start_url": "./",
   "scope": "./",

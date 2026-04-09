@@ -15,7 +15,7 @@ export default function Layout() {
       <header className="bg-forest-deep px-4 py-3 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
           <img src={`${import.meta.env.BASE_URL}icons/icon.svg`} alt="" className="w-8 h-8" />
-          <h1 className="text-lg font-semibold text-text-light tracking-tight">Fallon Tracker</h1>
+          <h1 className="text-lg font-semibold text-text-light tracking-tight">Rikers Expert Tracker</h1>
         </div>
         <NavLink to="/settings" className="text-text-muted hover:text-gold transition-colors p-2">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">

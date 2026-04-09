@@ -104,7 +104,7 @@ export default function Help() {
     <div className="space-y-6 pb-4">
       <h2 className="text-lg font-semibold text-text-light">How To / FAQ</h2>
       <p className="text-sm text-text-muted">
-        Quick answers for using Fallon Tracker on the Nunez Remediation project.
+        Quick answers for using Rikers Expert Tracker on the Nunez Remediation project.
       </p>
 
       {sections.map(section => (

@@ -57,7 +57,7 @@ export default function Settings() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `FallonTracker_Backup_${new Date().toLocaleDateString('en-CA')}.json`;
+    a.download = `RikersExpertTracker_Backup_${new Date().toLocaleDateString('en-CA')}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -148,7 +148,7 @@ export default function Settings() {
             fgColor="#E1F5EE"
             level="M"
           />
-          <p className="text-xs text-text-muted text-center">Scan to install Fallon Tracker</p>
+          <p className="text-xs text-text-muted text-center">Scan to install Rikers Expert Tracker</p>
           <button
             onClick={() => {
               navigator.clipboard.writeText(APP_URL);
@@ -162,7 +162,7 @@ export default function Settings() {
         </div>
       </div>
 
-      <p className="text-center text-xs text-text-muted">Fallon Tracker v1.0</p>
+      <p className="text-center text-xs text-text-muted">Rikers Expert Tracker v1.0</p>
     </div>
   );
 }
