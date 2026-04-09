@@ -22,7 +22,8 @@
       "Bash(gh repo:*)",
       "Bash(npx vite:*)",
       "Bash(gh api:*)",
-      "Bash(gh run:*)"
+      "Bash(gh run:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
